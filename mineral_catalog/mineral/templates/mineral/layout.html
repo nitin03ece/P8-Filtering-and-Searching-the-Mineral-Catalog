@@ -1,0 +1,45 @@
+{% load static from staticfiles %}
+{% load utility_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %} {% endblock %} | Macky's Minerals: A magnificant catalog of minerals</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Work+Sans:400,500' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Cousine' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+  </head>
+  
+  {% block content %}
+      {% block search %}
+        <form action="" method="POST">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <!--input type="submit" class="button" value="Search"-->
+        </form>
+      {% endblock %}
+
+      {% block groups %}
+            {% filter_group bold_group %}
+      {% endblock %}
+
+      {% block letters %}
+        <section class="logo__text text-centered">
+            {% filter_alphabet bold_alphabet %}
+        </section>
+      {% endblock %}
+
+  {% endblock %}
+
+  <footer>
+      <div class="minerals__random">
+          <a class="minerals__anchor" href="{% url 'minerals:home' %}">Minerals Home</a>
+          <a class="minerals__anchor" href="{% url 'minerals:random_mineral' %}">Show random mineral</a>
+          <a class="minerals__anchor" href="{% url 'minerals:mineral_list' %}">Minerals List</a>
+      </div>
+  </footer>
+</html>

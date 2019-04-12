@@ -1,0 +1,7 @@
+{% for alphabet in alphabets %}
+    {% if bold_alphabet == alphabet %}
+        <h3 style="display:inline; color: red;"><b><a href="{% url 'minerals:alpha_list' alpha=alphabet %}">{{ alphabet }}</a></b></h3>
+    {% else %}
+        <a href="{% url 'minerals:alpha_list' alpha=alphabet %}">{{ alphabet }}</a>
+    {% endif %}
+{% endfor %}
